@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор случайных цитат</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container text-center">
+        <div class="quote-container mt-5 p-4 border rounded">
+            <div class="quote-content" id="quoteContent">Загрузка...</div>
+            <div class="quote-author mt-3" id="quoteAuthor"></div>
+            <button class="btn btn-primary mt-3" onclick="fetchRandomQuote()">Новая цитата</button>
+        </div>
+    </div>
+
+    <script>
+        async function fetchRandomQuote() {
+            try {
+                const response = await fetch('/quote');
+                const data = await response.json();
+                document.getElementById('quoteContent').innerText = data.content;
+                document.getElementById('quoteAuthor').innerText = data.author;
+            } catch (error) {
+                console.error('Ошибка при получении цитаты:', error);
+                document.getElementById('quoteContent').innerText = 'Не удалось получить цитату.';
+                document.getElementById('quoteAuthor').innerText = '';
+            }
+        }
+
+        // Получить случайную цитату при загрузке страницы
+        window.onload = fetchRandomQuote;
+    </script>
+</body>
+</html>

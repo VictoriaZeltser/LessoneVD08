@@ -1,0 +1,19 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.quote-container {
+    background-color: white;
+    max-width: 600px;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.quote-content {
+    font-size: 1.5em;
+}
+
+.quote-author {
+    font-weight: bold;
+}
